@@ -8,7 +8,7 @@ MM2 Summer Update AutoFarm (openSource)
 
 
 # Pros:
-* My script is very lightweight
+* My script is very lightweight and should run on anything above 50% (UNC TEST)[https://raw.githubusercontent.com/unified-naming-convention/NamingStandard/main/UNCCheckEnv.lua]
 * My script uses Octree for fast computation on the closest beach ball
 * My script has dynamic speed adjust with radius and walkspeed
 * My script has a functional tweenPosition that is smooth (invalid position safe 80%)
