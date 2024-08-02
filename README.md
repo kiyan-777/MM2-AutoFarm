@@ -4,7 +4,7 @@ MM2 Summer Update AutoFarm (openSource)
 # Potential Updates:
 * add a list of the fake coin positions [it's 3am i've been making this since 2:30pm thats why i dont want to log them]
 * if i dont add the list then add a simple gui so you can log and add in the positions yourself
-* implement crushfire's [schedulertask](https://youtu.be/jGIomP26RRQ?si=0ba7S9dpC5fKFPfl) module to see if that would reduce the coroutine usage [not the best with coroutine]
+* implement crushfire's [scheduler class module](https://youtu.be/jGIomP26RRQ?si=0ba7S9dpC5fKFPfl) to see if that would reduce the coroutine usage [not the best with coroutine]
 
 
 # Pros:
