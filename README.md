@@ -6,4 +6,4 @@ MM2 Summer Update AutoFarm (openSource)
 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLxnk3Xm9ageDalMb07ci_yvGz4OnuXz9DeQ&s" alt="Screenshot of the round" width="500"/>
 
 * This program does not account for the fake coin Positions in the air bove each map
-[sadly you will have to make your own gui script to log those positions]
+* [sadly you will have to make your own gui script to log those positions]
