@@ -1,6 +1,9 @@
 # MM2-AutoFarm
 MM2 Summer Update AutoFarm (openSource)
 
+--updated 4:40 am August 2, 2024
+you can use : loadstring(game:HttpGet("https://raw.githubusercontent.com/Zyn-ic/MM2-AutoFarm/main/FreeScript.lua", true))()
+
 # Potential Updates:
 * add a list of the fake coin positions [it's 3am i've been making this since 2:30pm thats why i dont want to log them]
 * if i dont add the list then add a simple gui so you can log and add in the positions yourself
