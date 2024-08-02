@@ -25,5 +25,5 @@ MM2 Summer Update AutoFarm (openSource)
 * Lastly the BodyPosition is not the best for keeping the player still
 * [if you ever fling or get killed just run infiniteyield and goto a player and run the script again]
 * My script has dynamic speed adjust
-* [so it will take longer to reach a far part if you make the radius too big example: radius = 200; walkspeed = 26; you're speed will be distance_from_you_and_the_part/ walkspeed]
+* [so it will take longer to reach a far part if you make the radius too big example: radius = 200; walkspeed = 26; you're speed will be distance_from_you_and_the_part / walkspeed]
 * ! WOULD NOT RECOMMEND GOING OVER 80 RADIUS AND KEEP 26 WALKSPEED MAX 28
