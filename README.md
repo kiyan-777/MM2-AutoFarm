@@ -9,7 +9,7 @@ MM2 Summer Update AutoFarm (openSource)
 
 # Pros:
 * My script is very lightweight
-* My script uses Octree for fast computation on the closet coin
+* My script uses Octree for fast computation on the closest beach ball
 * My script has dynamic speed adjust with radius and walkspeed
 * My script has a functional tweenPosition that is smooth (invalid position safe 80%)
 * Memory and Connection Management
