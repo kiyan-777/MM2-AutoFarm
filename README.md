@@ -24,7 +24,7 @@ MM2 Summer Update AutoFarm (openSource)
 * [sadly you will have to make your own gui script to log those positions]
 * Lastly the BodyPosition is not the best for keeping the player still
 * [if you ever fling or get killed just run infiniteyield and goto a player and run the script again]
-* My script has dynamic speed adjust
+* My script has dynamic speed adjust warning
 * [so it will take longer to reach a far part if you make the radius too big]
 * [example lets say the radius is 200 studs away and the distance is 189 studs away which is within a 200 stud radius <br/> then your speed will be (189/26) = 7.26923077 studs per sec]
 * ! WOULD NOT RECOMMEND GOING OVER 80 RADIUS AND KEEP 26 WALKSPEED MAX 28
