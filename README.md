@@ -24,6 +24,7 @@ you can use : <br/> loadstring(game:HttpGet("https://raw.githubusercontent.com/Z
 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLxnk3Xm9ageDalMb07ci_yvGz4OnuXz9DeQ&s" alt="Screenshot of the round" width="500"/>
 
 * This program does not account for the fake coin Positions in the air bove each map
+* <img src="https://raw.githubusercontent.com/Zyn-ic/MM2-AutoFarm/main/Pic/fake%20coin%20spot.png" alt="fake coin spot" width="500"/>
 * [sadly you will have to make your own gui script to log those positions]
 * Lastly the BodyPosition is not the best for keeping the player still
 * [if you ever fling or get killed just run infiniteyield and goto a player and run the script again]
