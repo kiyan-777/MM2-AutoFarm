@@ -23,7 +23,7 @@ MM2 Summer Update AutoFarm (openSource)
 * This program does not account for the fake coin Positions in the air bove each map
 * [sadly you will have to make your own gui script to log those positions]
 * Lastly the BodyPosition is not the best for keeping the player still
-* [if you ever crash or get killed just run infiniteyield and goto a player and run the script again]
+* [if you ever fling or get killed just run infiniteyield and goto a player and run the script again]
 * My script has dynamic speed adjust
 * [so it will take longer to reach a far part if you make the radius too big]
 * ! WOULD NOT RECOMMEND GOING OVER 80 RADIUS AND KEEP 26 WALKSPEED MAX 28
