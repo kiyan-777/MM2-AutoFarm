@@ -26,5 +26,5 @@ MM2 Summer Update AutoFarm (openSource)
 * [if you ever fling or get killed just run infiniteyield and goto a player and run the script again]
 * My script has dynamic speed adjust
 * [so it will take longer to reach a far part if you make the radius too big]
-* [example lets say the radius is 200 and the distance is 189 studs which is 200 stud radius then your speed will be (189/26) = 7.26923077 stds per sec]
+* [example lets say the radius is 200 away and the distance is 189 studs away which is within a 200 stud radius \n then your speed will be (189/26) = 7.26923077 stds per sec]
 * ! WOULD NOT RECOMMEND GOING OVER 80 RADIUS AND KEEP 26 WALKSPEED MAX 28
