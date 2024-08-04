@@ -1,5 +1,5 @@
 --[[
-  credits to:
+  Credits to:
   UI lib made by bungie#0001
   
   - Please do not use this without permission, I am working really hard on this UI to make it perfect and do not have a big 
@@ -1850,7 +1850,7 @@ function library:Init(key)
                 if UserInputService.WindowFocused then
                     UserInputService.InputBegan:Connect(function(input, gameprocessEvent)
                         if not gameprocessEvent then
-                            if input.KeyCode.Name == ChosenKey and not ChatTextBox:IsFocused() then
+                            if input.KeyCode.Name == ChosenKey then
                                 On = not On
                                 local SizeOn = On and UDim2.new(0, 12, 0, 12) or UDim2.new(0, 0, 0, 0)
                                 local Transparency = On and 0 or 1
@@ -2080,11 +2080,10 @@ function library:Init(key)
                 end
             end)
 
-            local ChatTextBox = Player.PlayerGui.Chat.Frame.ChatBarParentFrame.Frame.BoxFrame.Frame.ChatBar
             if UserInputService.WindowFocused then
                 UserInputService.InputBegan:Connect(function(input, gameprocessEvent)
                     if not gameprocessEvent then
-                        if input.KeyCode.Name == ChosenKey and not ChatTextBox:IsFocused() then
+                        if input.KeyCode.Name == ChosenKey  then
                             callback(ChosenKey)
                             return
                         end
