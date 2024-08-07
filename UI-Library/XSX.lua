@@ -1,5 +1,4 @@
 --[[
-  Credits to:
   UI lib made by bungie#0001
   
   - Please do not use this without permission, I am working really hard on this UI to make it perfect and do not have a big 
@@ -82,15 +81,9 @@ end
 local library = {
     version = "2.0.2",
     title = title or "xsx " .. tostring(math.random(1,366)),
-    fps = 0,
     rank = "private"
 }
 
-coroutine.wrap(function()
-    RunService.RenderStepped:Connect(function(v)
-        library.fps =  math.round(1/v)
-    end)
-end)()
 
 function library:RoundNumber(int, float)
     return tonumber(string.format("%." .. (int or 0) .. "f", float))
@@ -124,12 +117,7 @@ function library:Rejoin()
     TeleportService:TeleportToPlaceInstance(library:GetPlaceId(), library:GetJobId(), library:GetUserId())
 end
 
-function library:Copy(input) -- only works with synapse
-    if syn then
-        syn.write_clipboard(input)
-        return
-    end
-
+function library:Copy(input) 
     setclipboard(input)
 end
 
@@ -3083,6 +3071,7 @@ function library:Init(key)
             UpdatePageSize()
             local SelectorFunctions = {}
             local AddAmount = 0
+            
             function SelectorFunctions:AddOption(new, callback_f)
                 new = new or "option"
                 list[new] = new
@@ -3137,8 +3126,10 @@ function library:Init(key)
 
                 for i,v in pairs(selectorContainer:GetDescendants()) do
                     if v:IsA("TextButton") then
+                        print(option)
                         if v.Text == option then
                             v:Destroy()
+                            checkSizes()
                             selectorContainer.Size = UDim2.new(0, 394, 0, Val - RemoveAmount)
                             selectorTwo.Size = UDim2.new(0, 394, 0, Val - RemoveAmount)
                             selector.Size = UDim2.new(0, 396, 0, (Val - RemoveAmount) + 2)
@@ -3575,6 +3566,7 @@ function library:Init(key)
         key = new
         return TabLibrary
     end
+    
     return TabLibrary
 end
 return library
