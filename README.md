@@ -23,12 +23,9 @@ you can use : <br/> loadstring(game:HttpGet("https://raw.githubusercontent.com/Z
 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLxnk3Xm9ageDalMb07ci_yvGz4OnuXz9DeQ&s" alt="Screenshot of the round" width="500"/>
 
 * I have fixed some of the "fake coin positions" but for anyone wanting to take a step further the problem is removing already touched/removing coins
+  best way to do this is using Octree:FindFirstNode()
 <img src="https://raw.githubusercontent.com/Zyn-ic/MM2-AutoFarm/main/Pic/fake%20coin%20spot.png" alt="fake coin spot" width="500"/>
 
-* [sadly you will have to make your own gui script to log those positions]
 * Lastly the BodyPosition is not the best for keeping the player still
 * [if you ever fling or get killed just run infiniteyield and goto a player and run the script again]
-* My script has dynamic speed adjust warning
-* [so it will take longer to reach a part too far from the character if you make the radius too big]
-* [example lets say the radius is 200 studs away and the distance is 189 studs away which is within a 200 stud radius <br/> then your speed will be (189/26) = 7.26923077 studs per sec]
-* ! WOULD NOT RECOMMEND GOING OVER 80 RADIUS AND KEEP 26 WALKSPEED MAX 28
+
