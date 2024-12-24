@@ -1,7 +1,7 @@
--- StarterPlayerScripts/CoinCollectorScript.lua
+-- Script made by Zynic
 
 local Octree = loadstring(game:HttpGet("https://raw.githubusercontent.com/Sleitnick/rbxts-octo-tree/main/src/init.lua", true))()
-local rt = {} -- removeable table
+local rt = {} -- Removable table
 rt.Players = game:GetService("Players")
 rt.player = rt.Players.LocalPlayer
 
@@ -9,9 +9,20 @@ function rt.Character()
     return rt.player.Character or rt.player.CharacterAdded:Wait()
 end
 
+function rt.Map()
+    for _, v in workspace:GetDescendants() do
+        if v:IsA("Model") and v.Name == "Base" then
+            return v.Parent
+        end
+    end
+    return nil
+end
+
 rt.coinContainer = nil
 rt.octree = Octree.new()
-rt.radius = 80 -- Radius to search for coins
+rt.radius = 200 -- Radius to search for coins
+rt.walkspeed = 30 -- speed at which you will go to a coin measured in walkspeed
+rt.positionChangeConnections = {}
 
 -- Function to set the collision state of the character's parts
 local function setCharacterCollision(character, state)
@@ -33,113 +44,93 @@ local function addBodyPosition(character)
     return bodyPosition
 end
 
--- Function to move the player slowly to a given position
-local function moveToPositionSlowly(targetPosition, duration)
-        rt.humanoidRootPart = rt.Character():WaitForChild("HumanoidRootPart")
-        local startPosition = rt.humanoidRootPart.Position
-        local startTime = tick()
+-- Function to populate the Octree with coins
+local function populateOctree()
+    rt.octree:ClearAllNodes() -- Clear previous nodes if necessary
 
-        -- Set character parts to be non-collidable and add BodyPosition
-        setCharacterCollision(rt.Character(), false)
-        local bodyPosition = addBodyPosition(rt.Character())
-
-        while true do
-            local elapsedTime = tick() - startTime
-            local alpha = math.min(elapsedTime / duration, 1)
-            rt.humanoidRootPart.CFrame = CFrame.new(startPosition:Lerp(targetPosition, alpha))
-
-            -- Check if we have reached the target position or time is up
-            if alpha >= 1 then
-                task.wait(0.9)
-                break
-            end
-
-            task.wait() -- Small delay to make the movement smoother
+    for _, descendant in pairs(rt.coinContainer:GetDescendants()) do
+        if descendant:IsA("MeshPart") and descendant.Material == Enum.Material.Ice then
+            rt.octree:CreateNode(descendant.Position, descendant)
         end
+    end
 
-        -- Restore character parts to be collidable and remove BodyPosition
-        bodyPosition:Destroy()
-        setCharacterCollision(rt.Character(), true)
+    rt.coinContainer.DescendantAdded:Connect(function(descendant)
+        if descendant:IsA("MeshPart") and descendant.Material == Enum.Material.Ice then
+            rt.octree:CreateNode(descendant.Position, descendant)
+        end
+    end)
+
+    rt.coinContainer.DescendantRemoving:Connect(function(descendant)
+        if descendant:IsA("MeshPart") and descendant.Material == Enum.Material.Ice then
+            local node = rt.octree:FindFirstNode(descendant)
+            if node then
+                rt.octree:RemoveNode(node)
+            end
+        end
+    end)
 end
 
--- Function to collect coins
+-- Function to move the player slowly to a given position
+local function moveToPositionSlowly(targetPosition, duration)
+    rt.humanoidRootPart = rt.Character():WaitForChild("HumanoidRootPart")
+    local startPosition = rt.humanoidRootPart.Position
+    local startTime = tick()
+    
+    -- Set character parts to be non-collidable and add BodyPosition
+    
+    local bodyPosition = addBodyPosition(rt.Character())
+
+    while true do
+        local elapsedTime = tick() - startTime
+        local alpha = math.min(elapsedTime / duration, 1)
+        rt.humanoidRootPart.CFrame = CFrame.new(startPosition:Lerp(targetPosition, alpha))
+
+        if alpha >= 1 then
+            task.wait(0.2)
+            break
+        end
+
+        task.wait() -- Small delay to make the movement smoother
+    end
+    bodyPosition:Destroy()
+end
+
+-- Function to handle coin collection
 local function collectCoins()
     -- Step 1: Check if CoinContainer is loaded
-    rt.coinContainer = game.Workspace:FindFirstChild("Normal"):FindFirstChild("CoinContainer")
-
-    -- Populate the Octree with coins
-    local function populateOctree()
-        rt.octree:ClearAllNodes() -- Clear previous nodes if necessary
-        for _, descendant in pairs(rt.coinContainer:GetDescendants()) do
-            if descendant:IsA("MeshPart") and descendant.Material == Enum.Material.Glass then
-                rt.octree:CreateNode(descendant.Position, descendant)
-            end
-        end
-    end
-
-    -- Function to handle coin collection
-    local function handleCoinCollection()
-        -- Update the octree with the current coins
-        populateOctree()
-
+    rt.coinContainer = rt.Map():FindFirstChild("CoinContainer")
+    assert(rt.coinContainer, "CoinContainer not found in the map!")
+    setCharacterCollision(rt.Character(), false)
+    populateOctree() -- Ensure the octree is updated
+    while true do
+       
         -- Continuously find and move to the closest coin
-        while true do
-            rt.humanoidRootPart = rt.Character().HumanoidRootPart
-            
-            -- Coroutine to find the nearest coin
-            local nearestCoinCoroutine = coroutine.create(function()
-                local nearestNode = rt.octree:GetNearest(rt.humanoidRootPart.Position, rt.radius, 1)[1]
-                return nearestNode
-            end)
+        local nearestNode = rt.octree:GetNearest(rt.Character().HumanoidRootPart.Position, rt.radius, 1)[1]
 
-            -- Start the coroutine and get the result
-            local success, nearestNode = coroutine.resume(nearestCoinCoroutine)
+        if nearestNode then
+            local closestCoin = nearestNode.Object
+            local closestCoinPosition = closestCoin.Position
+            local distance = (rt.Character().HumanoidRootPart.Position - closestCoinPosition).Magnitude
+            local duration = distance / 28 -- Default walk speed in Roblox is 26 studs/sec
 
-            if success and nearestNode then
-                local closestCoin = nearestNode.Object
-                local closestCoinPosition = closestCoin.Position
+            moveToPositionSlowly(closestCoinPosition, duration)
 
-                -- Coroutine to calculate the distance
-                local distanceCoroutine = coroutine.create(function()
-                    local distance = (rt.humanoidRootPart.Position - closestCoinPosition).Magnitude
-                    return distance
-                end)
-
-                -- Start the coroutine and get the result
-                local success, distance = coroutine.resume(distanceCoroutine)
-
-                if success then
-                    local duration = distance / 26 -- Default walk speed in Roblox is 26 studs/sec
-                    moveToPositionSlowly(closestCoinPosition, duration)
-
-                    -- Remove the collected coin from the octree
-                    rt.octree:RemoveNode(nearestNode)
-
-                    -- Re-populate the octree if it's empty
-                    if #rt.octree:GetAllNodes() == 0 then
-                        populateOctree()
-                    end
-                end
-            else
-                -- If no coins found, check again after a short delay
-                task.wait(1)
-                populateOctree()
-            end
-
-            task.wait(0.1) -- Short delay before the next iteration
+            -- Remove the collected coin from the octree and destroy it
+            rt.octree:RemoveNode(nearestNode)
+            closestCoin:Destroy()
+        else
+            -- If no coins found, wait and re-check
+            task.wait(1)
         end
     end
-
-    -- Start the coin collection process
-    handleCoinCollection()
 end
 
 -- Call the function to start collecting coins
 local start = coroutine.create(collectCoins)
 coroutine.resume(start)
 
+-- Clean up when the player dies or leaves
 local died = rt.player.CharacterRemoving:Connect(function()
-    -- Clean up memory
     coroutine.close(start)
     rt = nil
     Octree = nil
