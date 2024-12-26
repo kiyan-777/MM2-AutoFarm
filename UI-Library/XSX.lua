@@ -3075,9 +3075,11 @@ function library:Init(key)
             function SelectorFunctions:AddOption(new, callback_f)
                 new = new or "option"
                 list[new] = new
-            
-                -- Create a new option button
+
                 local optionButton = Instance.new("TextButton")
+
+                AddAmount = AddAmount + 20
+
                 optionButton.Name = "optionButton"
                 optionButton.Parent = selectorContainer
                 optionButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -3088,16 +3090,13 @@ function library:Init(key)
                 optionButton.Text = new
                 optionButton.TextColor3 = Color3.fromRGB(140, 140, 140)
                 optionButton.TextSize = 14.000
-            
-                -- Highlight the default option if applicable
                 if optionButton.Text == default then
                     optionButton.TextColor3 = Color3.fromRGB(159, 115, 255)
                     callback(selectorText.Text)
                 end
-            
-                -- Set up click behavior for the button
+
                 optionButton.MouseButton1Click:Connect(function()
-                    for _, x in ipairs(selectorContainer:GetChildren()) do
+                    for z,x in next, selectorContainer:GetChildren() do
                         if x:IsA("TextButton") then
                             TweenService:Create(x, TweenTable["selector"], {TextColor3 = Color3.fromRGB(140, 140, 140)}):Play()
                         end
@@ -3106,43 +3105,47 @@ function library:Init(key)
                     selectorText.Text = optionButton.Text
                     callback(optionButton.Text)
                 end)
-            
-                UpdatePageSize() -- Update after adding
+
+                checkSizes()
+                selectorContainer.Size = UDim2.new(0, 394, 0, Val + AddAmount)
+                selectorTwo.Size = UDim2.new(0, 394, 0, Val + AddAmount)
+                selector.Size = UDim2.new(0, 396, 0, (Val + AddAmount) + 2)
+                selectorFrame.Size = UDim2.new(0, 396, 0, (Val + AddAmount) + 26)
+
+                UpdatePageSize()
+                checkSizes()
                 return SelectorFunctions
             end
             --
+            local RemoveAmount = 0
             function SelectorFunctions:RemoveOption(option)
-                if not list[option] then return end
                 list[option] = nil
-            
-                -- Remove the corresponding button
-                for _, v in ipairs(selectorContainer:GetChildren()) do
-                    if v:IsA("TextButton") and v.Text == option then
-                        v:Destroy()
-                        break
+
+                RemoveAmount = RemoveAmount + 20
+                AddAmount = AddAmount - 20
+
+                for i,v in pairs(selectorContainer:GetDescendants()) do
+                    if v:IsA("TextButton") then
+                        print(option)
+                        if v.Text == option then
+                            v:Destroy()
+                            checkSizes()
+                            selectorContainer.Size = UDim2.new(0, 394, 0, Val - RemoveAmount)
+                            selectorTwo.Size = UDim2.new(0, 394, 0, Val - RemoveAmount)
+                            selector.Size = UDim2.new(0, 396, 0, (Val - RemoveAmount) + 2)
+                            selectorFrame.Size = UDim2.new(0, 396, 0, (Val + 6) - 20)
+                        end
                     end
                 end
-            
-                -- Reset selector text if the removed option was selected
+
                 if selectorText.Text == option then
-                    local firstOption = next(list) -- Get another available option
-                    selectorText.Text = firstOption or ". . ."
+                    selectorText.Text = ". . ."
                 end
-            
-                UpdatePageSize() -- Update after removing
+
+                UpdatePageSize()
+                checkSizes()
                 return SelectorFunctions
             end
-            
-            -- Ensure selectorContainer uses UIListLayout for dynamic sizing
-            if not selectorContainer:FindFirstChildOfClass("UIListLayout") then
-                local layout = Instance.new("UIListLayout")
-                layout.Parent = selectorContainer
-                layout.SortOrder = Enum.SortOrder.LayoutOrder
-                layout.Padding = UDim.new(0, 5) -- Adjust padding as needed
-            end
-      
-            -- Initial UpdatePageSize call to sync everything
-            UpdatePageSize()
             --
             function SelectorFunctions:SetFunction(new)
                 new = new or callback
