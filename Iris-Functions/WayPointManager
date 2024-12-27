@@ -1,4 +1,4 @@
-return function (rt: table)
+return function (WayPointsTable: table, Character: Model)
     
     local Iris = loadstring(game:HttpGet("https://raw.githubusercontent.com/x0581/Iris-Exploit-Bundle/2.0.4/bundle.lua"))().Init(game.CoreGui)
 
@@ -31,10 +31,11 @@ return function (rt: table)
                     local item = Iris.Selectable({ waypoint, i }, { index = sharedwaypoint })
 
                     if item.doubleClicked() then
+                        print("Waypoint double-clicked:", waypoint)
                         -- Handle double-click logic
-                        for _, rtwaypoint in ipairs(rt.Settings.WayPoints) do
+                        for _, rtwaypoint in ipairs(WayPointsTable) do
                             if rtwaypoint.name == waypoint then
-                                rt:Character():PivotTo(rtwaypoint.waypoint)
+                                Character:PivotTo(rtwaypoint.waypoint)
                                 break
                             end
                         end
@@ -65,8 +66,8 @@ return function (rt: table)
                     table.insert(waypointList:get(), name)
                     sharedwaypoint:set(#waypointList:get())
 
-                    newWaypoint = { name = name, waypoint = rt:Character():GetPivot() }
-                    table.insert(rt.Settings.WayPoints, newWaypoint)
+                    newWaypoint = { name = name, waypoint = Character:GetPivot() }
+                    table.insert(WayPointsTable, newWaypoint)
                     inputtext:set("")
                     return Iris.End()
                 end
@@ -74,8 +75,8 @@ return function (rt: table)
                 table.insert(waypointList:get(), name)
                 sharedwaypoint:set(#waypointList:get())
 
-                newWaypoint = { name = name, waypoint = rt:Character():GetPivot() }
-                table.insert(rt.Settings.WayPoints, newWaypoint)
+                newWaypoint = { name = name, waypoint = Character:GetPivot() }
+                table.insert(WayPointsTable, newWaypoint)
                 inputtext:set("")
             end
 
@@ -94,9 +95,9 @@ return function (rt: table)
                     selectedWaypoint:set(0)
 
                     -- Remove from rt.Settings.WayPoints
-                    for i, waypoint in ipairs(rt.Settings.WayPoints) do
+                    for i, waypoint in ipairs(WayPointsTable) do
                         if waypoint.name == selectedName then
-                            table.remove(rt.Settings.WayPoints, i)
+                            table.remove(WayPointsTable, i)
                             break
                         end
                     end
