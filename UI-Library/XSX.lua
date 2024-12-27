@@ -1731,7 +1731,7 @@ function library:Init(key)
             --
             function ToggleFunctions:AddKeybind(default_t)
                 callback_t = callback
-                default_t = default_t or Enum.KeyCode.P
+                default_t = default_t --or Enum.KeyCode.P
                 
                 local keybind = Instance.new("TextButton")
                 local keybindCorner = Instance.new("UICorner")
@@ -1828,17 +1828,21 @@ function library:Init(key)
                 keybind.MouseButton1Click:Connect(function()
                     keybindButtonLabel.Text = ". . ."
                     local InputWait = UserInputService.InputBegan:wait()
-                    if UserInputService.WindowFocused and InputWait.KeyCode.Name ~= "Unknown" then
-                        local Result = Shortcuts[InputWait.KeyCode.Name] or InputWait.KeyCode.Name
+                    if UserInputService.WindowFocused and InputWait.KeyCode ~= Enum.KeyCode.Unknown then
+                        local Result = Shortcuts[InputWait.KeyCode] or InputWait.KeyCode
                         keybindButtonLabel.Text = Result
-                        ChosenKey = InputWait.KeyCode.Name
+                        ChosenKey = InputWait.KeyCode
                     end
                 end)
     
+                if ChosenKey == nil then
+                    keybindButtonLabel.Text = ". . ."
+                end
+
                 if UserInputService.WindowFocused then
                     UserInputService.InputBegan:Connect(function(input, gameprocessEvent)
                         if not gameprocessEvent then
-                            if input.KeyCode.Name == ChosenKey then
+                            if input.KeyCode == ChosenKey then
                                 On = not On
                                 local SizeOn = On and UDim2.new(0, 12, 0, 12) or UDim2.new(0, 0, 0, 0)
                                 local Transparency = On and 0 or 1
@@ -1850,7 +1854,7 @@ function library:Init(key)
                         end
                     end)
                 end
-    
+                
                 local ExtraKeybindFunctions = {}
                 function ExtraKeybindFunctions:SetKey(new)
                     new = new or ChosenKey.Name
@@ -1892,7 +1896,7 @@ function library:Init(key)
 
         function Components:NewKeybind(text, default, callback)
             text = text or "keybind"
-            default = default or Enum.KeyCode.P
+            default = default --or Enum.KeyCode.P
             callback = callback or function() end
 
             local keybindFrame = Instance.new("Frame")
@@ -2051,34 +2055,38 @@ function library:Init(key)
             keybindButton.MouseButton1Click:Connect(function()
                 keybindButtonLabel.Text = "..."
                 local InputWait = UserInputService.InputBegan:wait()
-                if UserInputService.WindowFocused and InputWait.KeyCode.Name ~= "Unknown" then
-                    local Result = Shortcuts[InputWait.KeyCode.Name] or InputWait.KeyCode.Name
+                if UserInputService.WindowFocused and InputWait.KeyCode ~= Enum.KeyCode.Unknown then
+                    local Result = Shortcuts[InputWait.KeyCode] or InputWait.KeyCode
                     keybindButtonLabel.Text = Result
-                    ChosenKey = InputWait.KeyCode.Name
+                    ChosenKey = InputWait.KeyCode
                 end
             end)
 
             keybind.MouseButton1Click:Connect(function()
                 keybindButtonLabel.Text = ". . ."
                 local InputWait = UserInputService.InputBegan:wait()
-                if UserInputService.WindowFocused and InputWait.KeyCode.Name ~= "Unknown" then
-                    local Result = Shortcuts[InputWait.KeyCode.Name] or InputWait.KeyCode.Name
+                if UserInputService.WindowFocused and InputWait.KeyCode ~= Enum.KeyCode.Unknown then
+                    local Result = Shortcuts[InputWait.KeyCode] or InputWait.KeyCode
                     keybindButtonLabel.Text = Result
-                    ChosenKey = InputWait.KeyCode.Name
+                    ChosenKey = InputWait.KeyCode
                 end
             end)
+
+            if ChosenKey == nil then
+                keybindButtonLabel.Text = ". . ."
+            end
 
             if UserInputService.WindowFocused then
                 UserInputService.InputBegan:Connect(function(input, gameprocessEvent)
                     if not gameprocessEvent then
-                        if input.KeyCode.Name == ChosenKey  then
+                        if input.KeyCode == ChosenKey  then
                             callback(ChosenKey)
                             return
                         end
                     end
                 end)
             end
-
+            
             UpdatePageSize()
 
             local KeybindFunctions = {}
