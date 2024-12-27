@@ -1823,14 +1823,13 @@ function library:Init(key)
                 ResizeKeybind()
                 UpdatePageSize()
     
-                local ChosenKey = default_t.Name
+                local ChosenKey = default_t
     
                 keybind.MouseButton1Click:Connect(function()
                     keybindButtonLabel.Text = ". . ."
                     local InputWait = UserInputService.InputBegan:wait()
                     if UserInputService.WindowFocused and InputWait.KeyCode ~= Enum.KeyCode.Unknown then
-                        local Result = Shortcuts[InputWait.KeyCode] or InputWait.KeyCode
-                        keybindButtonLabel.Text = Result
+                        keybindButtonLabel.Text = InputWait.KeyCode.Name
                         ChosenKey = InputWait.KeyCode
                     end
                 end)
@@ -1854,7 +1853,7 @@ function library:Init(key)
                 
                 local ExtraKeybindFunctions = {}
                 function ExtraKeybindFunctions:SetKey(new)
-                    ChosenKey = new ~= nil and typeof(new) == "EnumItem" and new or ChosenKey
+                    ChosenKey = new ~= nil and new or ChosenKey
                     keybindButtonLabel.Text = new.Name
                     return ExtraKeybindFunctions
                 end
@@ -2052,8 +2051,7 @@ function library:Init(key)
                 keybindButtonLabel.Text = "..."
                 local InputWait = UserInputService.InputBegan:wait()
                 if UserInputService.WindowFocused and InputWait.KeyCode ~= Enum.KeyCode.Unknown then
-                    local Result = Shortcuts[InputWait.KeyCode] or InputWait.KeyCode
-                    keybindButtonLabel.Text = Result
+                    keybindButtonLabel.Text = InputWait.KeyCode.Name
                     ChosenKey = InputWait.KeyCode
                 end
             end)
@@ -2062,8 +2060,7 @@ function library:Init(key)
                 keybindButtonLabel.Text = ". . ."
                 local InputWait = UserInputService.InputBegan:wait()
                 if UserInputService.WindowFocused and InputWait.KeyCode ~= Enum.KeyCode.Unknown then
-                    local Result = Shortcuts[InputWait.KeyCode] or InputWait.KeyCode
-                    keybindButtonLabel.Text = Result
+                    keybindButtonLabel.Text = InputWait.KeyCode.Name
                     ChosenKey = InputWait.KeyCode
                 end
             end)
@@ -2095,7 +2092,7 @@ function library:Init(key)
             end
             --
             function KeybindFunctions:SetKey(new)
-                ChosenKey = new ~= nil and typeof(new) == "EnumItem" and new or ChosenKey
+                ChosenKey = new ~= nil and new or ChosenKey
                 keybindButtonLabel.Text = new.Name
                 return KeybindFunctions
             end
