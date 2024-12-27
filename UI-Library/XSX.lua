@@ -45,6 +45,7 @@ local drag = function(obj, latency)
     toggled = nil
     input = nil
     start = nil
+    startPos = Player:GetMouse()
 
     local function updateInput(input)
         local Delta = input.Position - start
@@ -80,7 +81,7 @@ end
 
 local library = {
     version = "2.0.2",
-    title = title or "xsx " .. tostring(math.random(1,366)),
+    title = "xsx " .. tostring(math.random(1,366)),
     rank = "private"
 }
 
@@ -181,11 +182,6 @@ function library:GetYear(type)
     end
 end
 
-function library:UnlockFps(new) -- syn only
-    if syn then
-        setfpscap(new)
-    end
-end
 
 function library:Watermark(text)
     for i,v in pairs(CoreGuiService:GetChildren()) do
@@ -310,9 +306,9 @@ function library:Watermark(text)
         TweenService:Create(edge, TweenTable["wm"], {Size = UDim2.new(0, NewSize.x + 10, 0, 26)}):Play()
         TweenService:Create(background, TweenTable["wm"], {BackgroundTransparency = 0}):Play()
         TweenService:Create(background, TweenTable["wm"], {Size = UDim2.new(0, NewSize.x + 8, 0, 24)}):Play()
-        wait(.2)
+        task.wait(.2)
         TweenService:Create(bar, TweenTable["wm"], {Size = UDim2.new(0, NewSize.x + 8, 0, 1)}):Play()
-        wait(.1)
+        task.wait(.1)
         TweenService:Create(waterText, TweenTable["wm"], {TextTransparency = 0}):Play()
     end)()
 
@@ -413,9 +409,9 @@ function library:Watermark(text)
             TweenService:Create(edge, TweenTable["wm"], {Size = UDim2.new(0, NewSize.x + 10, 0, 26)}):Play()
             TweenService:Create(background, TweenTable["wm"], {BackgroundTransparency = 0}):Play()
             TweenService:Create(background, TweenTable["wm"], {Size = UDim2.new(0, NewSize.x + 8, 0, 24)}):Play()
-            wait(.2)
+            task.wait(.2)
             TweenService:Create(bar, TweenTable["wm"], {Size = UDim2.new(0, NewSize.x + 8, 0, 1)}):Play()
-            wait(.1)
+            task.wait(.1)
             TweenService:Create(waterText, TweenTable["wm"], {TextTransparency = 0}):Play()
         end)()
 
@@ -447,7 +443,7 @@ function library:Watermark(text)
         end
         --
         function NewWatermarkFunctions:Remove()
-            Watermark:Destroy()
+            watermark:Destroy()
             return NewWatermarkFunctions
         end
         return NewWatermarkFunctions
@@ -479,7 +475,7 @@ function library:Watermark(text)
     end
     --
     function WatermarkFunctions:Remove()
-        Watermark:Destroy()
+        watermark:Destroy()
         return WatermarkFunctions
     end
     return WatermarkFunctions
@@ -625,9 +621,9 @@ function library:InitNotifications(text, duration, callback)
             TweenService:Create(edge, TweenTable["notification_load"], {Size = UDim2.new(0, NewSize.X + 10, 0, 26)}):Play()
             TweenService:Create(background, TweenTable["notification_load"], {Size = UDim2.new(0, NewSize.X + 8, 0, 24)}):Play()
             TweenService:Create(notifText, TweenTable["notification_load"], {Size = UDim2.new(0, NewSize.X + 8, 0, 24)}):Play()
-            wait()
+            task.wait()
             TweenService:Create(bar, TweenTable["notification_wait"], {Size = UDim2.new(0, NewSize.X + 8, 0, 1)}):Play()
-            repeat wait() until bar.Size == UDim2.new(0, NewSize.X + 8, 0, 1)
+            repeat task.wait() until bar.Size == UDim2.new(0, NewSize.X + 8, 0, 1)
             IsRunning = false
             TweenService:Create(edge, TweenTable["notification_load"], {BackgroundTransparency = 1}):Play()
             TweenService:Create(background, TweenTable["notification_load"], {BackgroundTransparency = 1}):Play()
@@ -637,7 +633,7 @@ function library:InitNotifications(text, duration, callback)
             TweenService:Create(background, TweenTable["notification_load"], {Size = UDim2.new(0, 0, 0, 24)}):Play()
             TweenService:Create(notifText, TweenTable["notification_load"], {Size = UDim2.new(0, 0, 0, 24)}):Play()
             TweenService:Create(bar, TweenTable["notification_load"], {Size = UDim2.new(0, 0, 0, 1)}):Play()
-            wait(.2)
+            task.wait(.2)
             edge:Destroy()
         end)()
 
@@ -653,9 +649,9 @@ function library:InitNotifications(text, duration, callback)
                 TweenService:Create(edge, TweenTable["notification_load"], {Size = UDim2.new(0, NewSize.X + 10, 0, 26)}):Play()
                 TweenService:Create(background, TweenTable["notification_load"], {Size = UDim2.new(0, NewSize.X + 8, 0, 24)}):Play()
                 TweenService:Create(notifText, TweenTable["notification_load"], {Size = UDim2.new(0, NewSize.X + 8, 0, 24)}):Play()
-                wait()
+                task.wait()
                 TweenService:Create(bar, TweenTable["notification_reset"], {Size = UDim2.new(0, 0, 0, 1)}):Play()
-                wait(.4)
+                task.wait(.4)
                 TweenService:Create(bar, TweenTable["notification_wait"], {Size = UDim2.new(0, NewSize.X + 8, 0, 1)}):Play()
             end
 
@@ -799,7 +795,7 @@ function library:Introduction()
     CreateTween("xsxRotation", 0)
     local MinusAmount = -16
     coroutine.wrap(function()
-        while wait() do
+        while task.wait() do
             MinusAmount = MinusAmount + 0.4
             TweenService:Create(xsxLogo, TweenTable["xsxRotation"], {Rotation = xsxLogo.Rotation - MinusAmount}):Play()
         end
@@ -807,29 +803,29 @@ function library:Introduction()
 
     TweenService:Create(edge, TweenTable["introduction"], {BackgroundTransparency = 0}):Play()
     TweenService:Create(background, TweenTable["introduction"], {BackgroundTransparency = 0}):Play()
-    wait(.2)
+    task.wait(.2)
     TweenService:Create(bar, TweenTable["introduction"], {Size = UDim2.new(0, 298, 0, 1)}):Play()
-    wait(.2)
+    task.wait(.2)
     TweenService:Create(xsx, TweenTable["introduction"], {TextTransparency = 0}):Play()
     TweenService:Create(text, TweenTable["introduction"], {TextTransparency = 0}):Play()
-    wait(.3)
+    task.wait(.3)
     TweenService:Create(xsxLogo, TweenTable["introduction"], {ImageTransparency = 0}):Play()
-    wait(2)
+    task.wait(2)
     TweenService:Create(xsxLogo, TweenTable["introduction"], {ImageTransparency = 1}):Play()
-    wait(.2)
+    task.wait(.2)
     TweenService:Create(hashLogo, TweenTable["introduction"], {ImageTransparency = 0}):Play()
-    wait(2)
+    task.wait(2)
     TweenService:Create(hashLogo, TweenTable["introduction"], {ImageTransparency = 1}):Play()
-    wait(.1)
+    task.wait(.1)
     TweenService:Create(text, TweenTable["introduction"], {TextTransparency = 1}):Play()
-    wait(.1)
+    task.wait(.1)
     TweenService:Create(xsx, TweenTable["introduction"], {TextTransparency = 1}):Play()
-    wait(.1)
+    task.wait(.1)
     TweenService:Create(bar, TweenTable["introduction"], {Size = UDim2.new(0, 0, 0, 1)}):Play()
-    wait(.1)
+    task.wait(.1)
     TweenService:Create(background, TweenTable["introduction"], {BackgroundTransparency = 1}):Play()
     TweenService:Create(edge, TweenTable["introduction"], {BackgroundTransparency = 1}):Play()
-    wait(.2)
+    task.wait(.2)
     introduction:Destroy()
 end
 
@@ -1707,7 +1703,7 @@ function library:Init(key)
             --
             function ToggleFunctions:Remove()
                 toggleButton:Destroy()
-                return ToggleFunction
+                return ToggleFunctions
             end
             --
             function ToggleFunctions:Set(state)
@@ -1869,15 +1865,15 @@ function library:Init(key)
                     return ExtraKeybindFunctions 
                 end
                 --
-                function ExtraKeybindFunctions:Hide()
-                    keybindFrame.Visible = false
-                    return ExtraKeybindFunctions
-                end
-                --
-                function ExtraKeybindFunctions:Show()
-                    keybindFrame.Visible = true
-                    return ExtraKeybindFunctions
-                end
+                -- function ExtraKeybindFunctions:Hide()
+                --     keybindFrame.Visible = false
+                --     return ExtraKeybindFunctions
+                -- end
+                -- --
+                -- function ExtraKeybindFunctions:Show()
+                --     keybindFrame.Visible = true
+                --     return ExtraKeybindFunctions
+                -- end
                 return ExtraKeybindFunctions and ToggleFunctions
             end
 
@@ -2265,7 +2261,7 @@ function library:Init(key)
                 textboxTwoStraint.MaxSize = Vector2.new(388 - ForcedMaxSize.X, 20)
                 textBoxValuesStraint.MaxSize = Vector2.new(388 - ForcedMaxSize.X, 20)
                 
-                function ResizeTextStraints()
+                local function ResizeTextStraints()
                     ForcedMinSize = TextService:GetTextSize(textBoxValues.PlaceholderText, textBoxValues.TextSize, textBoxValues.Font, Vector2.new(math.huge,math.huge))
                     if place ~= "" then
                         textboxStraint.MinSize = Vector2.new(ForcedMinSize.X + 10, 22)
@@ -2277,7 +2273,8 @@ function library:Init(key)
                         textBoxValuesStraint.MinSize = Vector2.new(26, 20)
                     end
                 end
-                function ResizeTextBox()
+
+                local function ResizeTextBox()
                     NewTextboxSize = TextService:GetTextSize(textBoxValues.Text, textBoxValues.TextSize, textBoxValues.Font, Vector2.new(math.huge,math.huge))
                     if NewTextboxSize.X < (396 - ForcedMaxSize.X) - 10 then
                         TweenService:Create(textBoxValues, TweenTable["TextBox"], {Size = UDim2.new(0, NewTextboxSize.X + 8, 0, 20)}):Play()
@@ -2289,7 +2286,8 @@ function library:Init(key)
                         TweenService:Create(textbox, TweenTable["TextBox"], {Size = UDim2.new(0, (396 - ForcedMaxSize.X) - 10, 0, 22)}):Play()
                     end
                 end
-                function SetMaxSize()
+
+                local function SetMaxSize()
                     ForcedMaxSize = TextService:GetTextSize(textboxLabel.Text, textboxLabel.TextSize, textboxLabel.Font, Vector2.new(math.huge,math.huge))
                     local def = 396 - ForcedMaxSize.X
                     textboxStraint.MaxSize = Vector2.new(def - 10, 22)
@@ -3023,7 +3021,7 @@ function library:Init(key)
 
             local Amount = #list
             local Val = (Amount * 20)
-            function checkSizes()
+            local function checkSizes()
                 Amount = #list
                 Val = (Amount * 20) + 20
             end
@@ -3046,7 +3044,7 @@ function library:Init(key)
                 end
 
                 optionButton.MouseButton1Click:Connect(function()
-                    for z,x in next, selectorContainer:GetChildren() do
+                    for _,x in next, selectorContainer:GetChildren() do
                         if x:IsA("TextButton") then
                             TweenService:Create(x, TweenTable["selector"], {TextColor3 = Color3.fromRGB(160, 160, 160)}):Play()
                         end
@@ -3093,7 +3091,7 @@ function library:Init(key)
                 end
 
                 optionButton.MouseButton1Click:Connect(function()
-                    for z,x in next, selectorContainer:GetChildren() do
+                    for _,x in next, selectorContainer:GetChildren() do
                         if x:IsA("TextButton") then
                             TweenService:Create(x, TweenTable["selector"], {TextColor3 = Color3.fromRGB(140, 140, 140)}):Play()
                         end
@@ -3353,6 +3351,8 @@ function library:Init(key)
                 end)
 
                 sliderValue.Text = slideText
+                local moveconnection
+                local releaseconnection 
 
                 moveconnection = Mouse.Move:Connect(function()
                     ValueNum = math.floor((((tonumber(values.max) - tonumber(values.min)) / sliderBackground.AbsoluteSize.X) * sliderIndicator.AbsoluteSize.X) + tonumber(values.min))
