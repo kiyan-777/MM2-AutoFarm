@@ -1,6 +1,4 @@
-return function (WayPointsTable: table, Character: Model)
-    
-    local Iris = loadstring(game:HttpGet("https://raw.githubusercontent.com/x0581/Iris-Exploit-Bundle/2.0.4/bundle.lua"))().Init(game.CoreGui)
+return function (Iris, WayPointsTable: table, Character: Model)
 
     local function helpMarker(helpText: string)
         Iris.PushConfig({ TextColor = Iris._config.TextDisabledColor })
@@ -15,7 +13,7 @@ return function (WayPointsTable: table, Character: Model)
     end
 
     local function WaypointWindow()
-        Iris.Window({ "Waypoint Manager" })
+        Iris.Window({ "Waypoint Manager", [Iris.Args.Window.NoClose] = true })
 
             -- Dropdown (tree) for waypoints
             Iris.SameLine()
