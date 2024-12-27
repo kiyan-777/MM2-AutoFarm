@@ -1731,7 +1731,7 @@ function library:Init(key)
             --
             function ToggleFunctions:AddKeybind(default_t)
                 callback_t = callback
-                default_t = default_t --or Enum.KeyCode.P
+                --default_t = default_t or Enum.KeyCode.P
                 
                 local keybind = Instance.new("TextButton")
                 local keybindCorner = Instance.new("UICorner")
@@ -1805,7 +1805,7 @@ function library:Init(key)
                     Return = "enter"
                 }
     
-                keybindButtonLabel.Text = Shortcuts[default_t.Name] or default_t.Name
+                keybindButtonLabel.Text = default_t ~= nil and default_t or "none"
                 CreateTween("keybind", 0.08)
                 
                 local NewKeybindSize = TextService:GetTextSize(keybindButtonLabel.Text, keybindButtonLabel.TextSize, keybindButtonLabel.Font, Vector2.new(math.huge,math.huge))
@@ -1835,9 +1835,6 @@ function library:Init(key)
                     end
                 end)
     
-                if ChosenKey == nil then
-                    keybindButtonLabel.Text = ". . ."
-                end
 
                 if UserInputService.WindowFocused then
                     UserInputService.InputBegan:Connect(function(input, gameprocessEvent)
@@ -1857,8 +1854,7 @@ function library:Init(key)
                 
                 local ExtraKeybindFunctions = {}
                 function ExtraKeybindFunctions:SetKey(new)
-                    new = new or ChosenKey.Name
-                    ChosenKey = new.Name
+                    ChosenKey = new ~= nil and typeof(new) == "EnumItem" and new or ChosenKey
                     keybindButtonLabel.Text = new.Name
                     return ExtraKeybindFunctions
                 end
@@ -1896,7 +1892,7 @@ function library:Init(key)
 
         function Components:NewKeybind(text, default, callback)
             text = text or "keybind"
-            default = default --or Enum.KeyCode.P
+            --default = default or Enum.KeyCode.P
             callback = callback or function() end
 
             local keybindFrame = Instance.new("Frame")
@@ -2034,7 +2030,7 @@ function library:Init(key)
                 Return = "enter"
             }
 
-            keybindButtonLabel.Text = Shortcuts[default.Name] or default.Name
+            keybindButtonLabel.Text = default ~= nil and default or "none"
             CreateTween("keybind", 0.08)
             
             local NewKeybindSize = TextService:GetTextSize(keybindButtonLabel.Text, keybindButtonLabel.TextSize, keybindButtonLabel.Font, Vector2.new(math.huge,math.huge))
@@ -2072,9 +2068,6 @@ function library:Init(key)
                 end
             end)
 
-            if ChosenKey == nil then
-                keybindButtonLabel.Text = ". . ."
-            end
 
             if UserInputService.WindowFocused then
                 UserInputService.InputBegan:Connect(function(input, gameprocessEvent)
@@ -2102,8 +2095,7 @@ function library:Init(key)
             end
             --
             function KeybindFunctions:SetKey(new)
-                new = new or ChosenKey.Name
-                ChosenKey = new.Name
+                ChosenKey = new ~= nil and typeof(new) == "EnumItem" and new or ChosenKey
                 keybindButtonLabel.Text = new.Name
                 return KeybindFunctions
             end
