@@ -2,10 +2,6 @@ return function (rt: table)
     
     local Iris = loadstring(game:HttpGet("https://raw.githubusercontent.com/x0581/Iris-Exploit-Bundle/2.0.4/bundle.lua"))().Init(game.CoreGui)
 
-    function rt:Character () : (Model)
-        return self.player.Character or self.player.CharacterAdded:Wait()
-    end
-
     local function helpMarker(helpText: string)
         Iris.PushConfig({ TextColor = Iris._config.TextDisabledColor })
         local text = Iris.Text({ "(?)" })
@@ -35,7 +31,6 @@ return function (rt: table)
                     local item = Iris.Selectable({ waypoint, i }, { index = sharedwaypoint })
 
                     if item.doubleClicked() then
-                        print("Waypoint double-clicked:", waypoint)
                         -- Handle double-click logic
                         for _, rtwaypoint in ipairs(rt.Settings.WayPoints) do
                             if rtwaypoint.name == waypoint then
