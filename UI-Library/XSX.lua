@@ -1801,7 +1801,7 @@ function library:Init(key)
                     Return = "enter"
                 }
     
-                keybindButtonLabel.Text = default_t ~= nil and default_t or "none"
+                keybindButtonLabel.Text = default_t ~= nil and default_t.Name or "none"
                 CreateTween("keybind", 0.08)
                 
                 local NewKeybindSize = TextService:GetTextSize(keybindButtonLabel.Text, keybindButtonLabel.TextSize, keybindButtonLabel.Font, Vector2.new(math.huge,math.huge))
@@ -2025,7 +2025,7 @@ function library:Init(key)
                 Return = "enter"
             }
 
-            keybindButtonLabel.Text = default ~= nil and default or "none"
+            keybindButtonLabel.Text = default ~= nil and default.Name or "none"
             CreateTween("keybind", 0.08)
             
             local NewKeybindSize = TextService:GetTextSize(keybindButtonLabel.Text, keybindButtonLabel.TextSize, keybindButtonLabel.Font, Vector2.new(math.huge,math.huge))
