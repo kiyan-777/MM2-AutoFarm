@@ -427,7 +427,7 @@ function library:Watermark(text)
         end
         --
         function NewWatermarkFunctions:Text(new)
-            new = new or text
+            --new = new or text
             waterText.Text = new
     
             local NewSize = TextService:GetTextSize(waterText.Text, waterText.TextSize, waterText.Font, Vector2.new(math.huge, math.huge))
@@ -460,7 +460,7 @@ function library:Watermark(text)
     end
     --
     function WatermarkFunctions:Text(new)
-        new = new or text
+        --new = new or text
         waterText.Text = new
 
         local NewSize = TextService:GetTextSize(waterText.Text, waterText.TextSize, waterText.Font, Vector2.new(math.huge, math.huge))
@@ -640,7 +640,7 @@ function library:InitNotifications(text, duration, callback)
         CreateTween("notification_reset", 0.4)
         local NotificationFunctions = {}
         function NotificationFunctions:Text(new)
-            new = new or text
+            --new = new or text
             notifText.Text = new
 
             NewSize = TextService:GetTextSize(notifText.Text, notifText.TextSize, notifText.Font, Vector2.new(math.huge, math.huge))
@@ -1514,7 +1514,7 @@ function library:Init(key)
 
             local SectionFunctions = {}
             function SectionFunctions:Text(new)
-                new = new or text
+                --new = new or text
                 sectionLabel.Text = new
 
                 local NewSectionSize = TextService:GetTextSize(sectionLabel.Text, sectionLabel.TextSize, sectionLabel.Font, Vector2.new(math.huge,math.huge))
@@ -1676,7 +1676,7 @@ function library:Init(key)
 
             local ToggleFunctions = {}
             function ToggleFunctions:Text(new)
-                new = new or text
+                --new = new or text
                 toggleLabel.Text = new
                 return ToggleFunctions
             end
@@ -2094,7 +2094,7 @@ function library:Init(key)
             end
             --
             function KeybindFunctions:Text(new)
-                new = new or keybindLabel.Text
+                --new = new or keybindLabel.Text
                 keybindLabel.Text = new
                 return KeybindFunctions
             end
@@ -2363,7 +2363,7 @@ function library:Init(key)
 
                 local TextboxFunctions = {}
                 function TextboxFunctions:Input(new)
-                    new = new or textBoxValues.Text
+                    --new = new or textBoxValues.Text
                     textBoxValues.Text = new
                     return TextboxFunctions
                 end
@@ -2380,7 +2380,7 @@ function library:Init(key)
                 end
                 --
                 function TextboxFunctions:Text(new)
-                    new = new or textboxLabel.Text
+                    --new = new or textboxLabel.Text
                     textboxLabel.Text = new
                     return TextboxFunctions
                 end
@@ -2401,7 +2401,7 @@ function library:Init(key)
                 end
                 --
                 function TextboxFunctions:Place(new)
-                    new = new or textBoxValues.PlaceholderText
+                    --new = new or textBoxValues.PlaceholderText
                     textBoxValues.PlaceholderText = new
                     return TextboxFunctions
                 end
@@ -2590,7 +2590,7 @@ function library:Init(key)
 
                 local TextboxFunctions = {}
                 function TextboxFunctions:Input(new)
-                    new = new or textBoxValues.Text
+                    --new = new or textBoxValues.Text
                     textBoxValues.Text = new
                     return TextboxFunctions
                 end
@@ -2607,7 +2607,7 @@ function library:Init(key)
                 end
                 --
                 function TextboxFunctions:Text(new)
-                    new = new or textboxLabel.Text
+                    --new = new or textboxLabel.Text
                     textboxLabel.Text = new
                     return TextboxFunctions
                 end
@@ -2628,7 +2628,7 @@ function library:Init(key)
                 end
                 --
                 function TextboxFunctions:Place(new)
-                    new = new or textBoxValues.PlaceholderText
+                    --new = new or textBoxValues.PlaceholderText
                     textBoxValues.PlaceholderText = new
                     return TextboxFunctions
                 end
@@ -2821,7 +2821,7 @@ function library:Init(key)
 
                 local TextboxFunctions = {}
                 function TextboxFunctions:Input(new)
-                    new = new or textBoxValues.Text
+                    --new = new or textBoxValues.Text
                     textBoxValues.Text = new
                     return TextboxFunctions
                 end
@@ -2838,7 +2838,7 @@ function library:Init(key)
                 end
                 --
                 function TextboxFunctions:Text(new)
-                    new = new or textboxLabel.Text
+                    --new = new or textboxLabel.Text
                     textboxLabel.Text = new
                     return TextboxFunctions
                 end
@@ -2859,7 +2859,7 @@ function library:Init(key)
                 end
                 --
                 function TextboxFunctions:Place(new)
-                    new = new or textBoxValues.PlaceholderText
+                    --new = new or textBoxValues.PlaceholderText
                     textBoxValues.PlaceholderText = new
                     return TextboxFunctions
                 end
@@ -3149,7 +3149,7 @@ function library:Init(key)
             end
             --
             function SelectorFunctions:Text(new)
-                new = new or selectorLabel.Text
+                --new = new or selectorLabel.Text
                 selectorLabel.Text = new
                 return SelectorFunctions
             end
@@ -3428,7 +3428,7 @@ function library:Init(key)
             end
             --
             function SliderFunctions:Text(new)
-                new = new or sliderLabel.Text
+                --new = new or sliderLabel.Text
                 sliderLabel.Text = new
                 return SliderFunctions
             end
