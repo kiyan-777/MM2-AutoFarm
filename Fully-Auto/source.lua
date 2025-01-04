@@ -1,14 +1,10 @@
 --Made By Zynic btw dont use it, its in testing and its not like i get a log of your errors so dont
 
-if not httpget then
-    return print("You're executor [" .. identifyexecutor() .. "] cannot run this")
-end
-
 ------------------------------------------------------------------------------------------------
 
 -- State variables
-local Octree = loadstring(httpget("https://raw.githubusercontent.com/Sleitnick/rbxts-octo-tree/main/src/init.lua", true))()
-local library = loadstring(httpget("https://raw.githubusercontent.com/Zyn-ic/MM2-AutoFarm/refs/heads/main/UI-Library/XSX.lua", true))()
+local Octree = loadstring(game:HttpGet("https://raw.githubusercontent.com/Sleitnick/rbxts-octo-tree/main/src/init.lua", true))()
+local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Zyn-ic/MM2-AutoFarm/refs/heads/main/UI-Library/XSX.lua", true))()
 local Notif = library:InitNotifications()
 
 local rt = {} -- Removable table
