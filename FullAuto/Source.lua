@@ -341,7 +341,7 @@ local function CollectCoins()
                 local duration = (rt:Character().PrimaryPart.Position - targetPosition).Magnitude / rt.walkspeed
                 moveToPositionSlowly(targetPosition, duration)
                 markCoinAsTouched(closestCoin)
-                task.wait(0)
+                task.wait(0.2)
             end
         else
             task.wait(1)
