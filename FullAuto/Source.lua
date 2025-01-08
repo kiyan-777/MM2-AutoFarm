@@ -243,7 +243,7 @@ local function moveToPositionSlowly(targetPosition: Vector3, duration: number)
         rt:Character():PivotTo(CFrame.new(startPosition:Lerp(targetPosition, alpha)))
 
         if alpha >= 1 then
-            task.wait(0)
+            task.wait(0.2)
             break
         end
 
