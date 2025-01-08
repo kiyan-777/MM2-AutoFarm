@@ -152,7 +152,7 @@ end
 
 local function AutoFarmCleanUp()
     if next(rt.positionChangeConnections) == nil then
-        return Message()
+        return rt:Message("Info", "Nothing to clean", 1)
     end
 
     -- Clean up all connections and cached data
@@ -162,7 +162,7 @@ local function AutoFarmCleanUp()
     rt.Disconnect(rt.Added)
     rt.Disconnect(rt.Removing)
 
-    Message("Info", "Autofarm CleanUp Success", 2)
+    rt:Message("Info", "Autofarm CleanUp Success", 2)
     table.clear(rt.touchedCoins)
     table.clear(rt.positionChangeConnections)
     rt.octree:ClearAllNodes()
@@ -323,7 +323,7 @@ local function CollectCoins()
     populateOctree()
     while CurrentState == State.Action do
         if IsBagFull() then
-            Message("Alert", "Bag is full!", 2)
+            rt:Message("Alert", "Bag is full!", 2)
             BagIsFull = true
             break
         end
@@ -351,7 +351,7 @@ local function CollectCoins()
 end
 
 local function RespawnState()
-    Message("Info", "Respawning...", 2)
+    rt:Message("Info", "Respawning...", 2)
     rt:GetCharacterLoaded()
     task.wait(1)
     if LastPosition == nil then LastPosition = rt:GetAlivePlayers()[1] end
@@ -359,10 +359,10 @@ local function RespawnState()
         rt:GetCharacterLoaded()
         rt:Character():PivotTo(LastPosition)
     end
-    Message("Info", "Respawned!", 2)
+    rt:Message("Info", "Respawned!", 2)
 
     if not RoundInProgress() then
-        Message("Info", "Round ended during respawn!", 2)
+        rt:Message("Info", "Round ended during respawn!", 2)
         ChangeState(State.WaitingForRound)
         return
     end
@@ -372,7 +372,7 @@ end
 
 -- Waiting State Logic
 local function WaitingForRound()
-    Message("Info", "Waiting for round to start...", 2)
+    rt:Message("Info", "Waiting for round to start...", 2)
     Working = false
     --rt:Character():FindFirstChildWhichIsA("Humanoid"):ChangeState(Enum.HumanoidStateType.Seated)
    -- Monitor round start
@@ -380,12 +380,12 @@ local function WaitingForRound()
         task.wait(0.5)
     until RoundInProgress() and rt:CheckIfPlayerWasInARound()
 
-    Message("Alert", "Round started!", 2)
+    rt:Message("Alert", "Round started!", 2)
     ChangeState(State.Action)
 end
 
 local function waitForRoundEnd()
-    Message("Info", "Waiting for round to end...", 2)
+    rt:Message("Info", "Waiting for round to end...", 2)
     Working = false
     --rt:Character():FindFirstChildWhichIsA("Humanoid"):ChangeState(Enum.HumanoidStateType.Seated)
     -- Monitor round end
@@ -393,12 +393,12 @@ local function waitForRoundEnd()
         task.wait(1)
     until not RoundInProgress()
 
-    Message("Alert", "Round ended!", 2)
+    rt:Message("Alert", "Round ended!", 2)
     ChangeState(State.WaitingForRound)
 end
 
 local function StandStillWait()
-    Message("Info", "Waiting for murderer to respawn", 2)
+    rt:Message("Info", "Waiting for murderer to respawn", 2)
     ChangeState("Nothing")
     rt:GetCharacterLoaded()
     task.wait(2)
@@ -409,10 +409,10 @@ end
 local function ActionState()
     LastPosition = nil
     if CheckMurderer() then
-        Message("Info", "You are the Murderer! Collecting coins...", 2)
+        rt:Message("Info", "You are the Murderer! Collecting coins...", 2)
         CollectCoins()
     else
-        Message("Info", "Logging position and respawning...", 2)
+        rt:Message("Info", "Logging position and respawning...", 2)
         --if #game.Players:GetChildren() > 2 then RespawnAndTeleportBack(); CollectCoins() else CollectCoins() end
         CollectCoins()
     end
@@ -420,11 +420,11 @@ local function ActionState()
     -- After collecting coins or if the round ends, return to waiting state
     if BagIsFull or not RoundInProgress() then
         if CheckMurderer() then
-            Message("Info", "Returning to Waiting State...", 2)
+            rt:Message("Info", "Returning to Waiting State...", 2)
             BagIsFull, Working, rt.RoundInProgress = false, false, false
             rt:Character():FindFirstChildWhichIsA("Humanoid"):ChangeState(Enum.HumanoidStateType.Dead)
         else
-            Message("Info", "Returning to Waiting State...", 2)
+            rt:Message("Info", "Returning to Waiting State...", 2)
             BagIsFull, Working = false, false
             rt:Character():FindFirstChildWhichIsA("Humanoid"):ChangeState(Enum.HumanoidStateType.Dead)
             ChangeState(State.WaitingForRoundEnd)
