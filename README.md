@@ -3,8 +3,51 @@ MM2 Winter Update Hub (openSource)
 
 ![Screenshot 2025-01-13 213032](https://github.com/user-attachments/assets/f71ac57d-37ff-4762-9ae3-f7cf4f88dc48)
 
---updated 7:54 am January 13, 2025
-you can use : <br/> loadstring(game:HttpGet("https://raw.githubusercontent.com/Zyn-ic/MM2-AutoFarm/main/FreeScript.lua", true))()
+
+I despise 'game:HttpGet' so I rather you use 'httpget' or the below script;
+
+Zynic Hub:
+```
+-- do not spam this only run it once and wait for it to load
+-- if it takes too long check ur conslose for errors if there aren't any then try again
+-- PC/Table mode only
+
+local response = request({
+	Url = "https://raw.githubusercontent.com/Zyn-ic/MM2-AutoFarm/main/FreeScript.lua",
+	Method = "GET",
+})
+
+loadstring(response.Body)()
+```
+
+Basic Autofarm script:
+```
+-- do not spam this only run it once and wait for it to load
+-- if it takes too long check ur conslose for errors if there aren't any then try again
+-- PC/Table mode only
+
+local response = request({
+	Url = "https://raw.githubusercontent.com/Zyn-ic/MM2-AutoFarm/refs/heads/main/Zynic-Auto-Farm/source.lua",
+	Method = "GET",
+})
+
+loadstring(response.Body)()
+```
+
+Fully Auto-Auto Farm:
+```
+-- do not spam this only run it once and wait for it to load
+-- if it takes too long check ur conslose for errors if there aren't any then try again
+-- PC/Table mode only
+
+local response = request({
+	Url = "https://raw.githubusercontent.com/Zyn-ic/MM2-AutoFarm/refs/heads/main/FullAuto/Source.lua",
+	Method = "GET",
+})
+
+loadstring(response.Body)()
+```
+
 
 <details>
   <summary>Preview of the HUB</summary>
