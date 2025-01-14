@@ -1,31 +1,50 @@
-# MM2-AutoFarm
-MM2 Summer Update AutoFarm (openSource)
+# MM2-Zynic-Hub
+MM2 Winter Update Hub (openSource)
 
---updated 4:40 am August 2, 2024
+![Screenshot 2025-01-13 213032](https://github.com/user-attachments/assets/f71ac57d-37ff-4762-9ae3-f7cf4f88dc48)
+
+
+--updated 7:54 am January 13, 2025
 you can use : <br/> loadstring(game:HttpGet("https://raw.githubusercontent.com/Zyn-ic/MM2-AutoFarm/main/FreeScript.lua", true))()
 
+# Disclaimer
+* I noticed my script has be forked and used in a lot of the newer mm2 autofarm scripts to find the closet coin and I'm kinda honored cause before I uploaded the free script back in summer 2024 autofarms were just collecting any random coin that spawned into the map and I did the same thing until I watched some youtube and found crushfire's video on Octree and from there the script was born. Sadly I had a lot to do in college so I couldn't update the script to be better but on my winter break in a mere two days I made an update version which wouldn't have you go to coins outside the map or "false positions" as I used to call it. Then in I think 4 or 5 days I created the [Free Script](/FreeScript.lua) which is a mm2 hub. I WILL NOT BE UPDATING the hub and will focus on better techniques/functions to [collect coins](/Zynic-Auto-Farm/source.lua);
+- [x] faster
+- [x] safer
+- [x] smarter
+- [x] and accout for all werid possibilities (like a murderer killing you while you're tweening to a coin)
+
+
+# Features
+
+## Basic Features
+
+* Increase/Decrease walkspeed
+* TP to player
+* Refresh Roles [^1]
+* Rejoin
+* Server Hop
+* Destroy gui
+
+## Advance Features
+* Autofarm
+* Murderer/Sheriff Info [^2]
+* Get Gun [^3]
+* Fling Murderer
+* Waypoints
+* Hitbox Size
+* ESP
+* TP to alive player
+
+
+[^1] used to refresh roles manually
+> [!NOTE] [^2] will refresh role automatically but is as acurate as I need it to be
+> [!NOTE] [^3] safe gun is a setting feature for get gun. It's purpose is to make sure you're not too far from the gun when getting it.
+
+
+
+
 # Potential Updates:
-* Implement it in a Full MM2 Hub
-* implement crushfire's [scheduler class module](https://youtu.be/jGIomP26RRQ?si=0ba7S9dpC5fKFPfl) to see if that would reduce the coroutine usage [not the best with coroutine]
-
-
-# Pros:
-* My script is very lightweight and should run on anything above 50% [U.N.C TEST](https://raw.githubusercontent.com/unified-naming-convention/NamingStandard/main/UNCCheckEnv.lua)
-* My script uses Octree for fast computation on the closest coin
-* My script has dynamic speed adjust with radius and walkspeed
-* My script has a functional tweenPosition that is smooth (invalid position safe 80%)
-* Memory and Connection Management
-* [this way the variable allocation is removed and the code doesn't keep running while/after/during you die]
-
-
-# Cons:
-* This does not autoexecute with the rounds you must manually run it when you have a weapon or the start timer is finished
-<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLxnk3Xm9ageDalMb07ci_yvGz4OnuXz9DeQ&s" alt="Screenshot of the round" width="500"/>
-
-* I have fixed some of the "fake coin positions" but for anyone wanting to take a step further the problem is removing already touched/removing coins
-  best way to do this is using Octree:FindFirstNode()
-<img src="https://raw.githubusercontent.com/Zyn-ic/MM2-AutoFarm/main/Pic/fake%20coin%20spot.png" alt="fake coin spot" width="500"/>
-
-* Lastly the BodyPosition is not the best for keeping the player still
-* [if you ever fling or get killed just run infiniteyield and goto a player and run the script again]
+* implement crushfire's [scheduler class module](https://youtu.be/jGIomP26RRQ?si=0ba7S9dpC5fKFPfl) to see if that would reduce the coroutine usage[^4]
+[^4] not the best with coroutine
 
