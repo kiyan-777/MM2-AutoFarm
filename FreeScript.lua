@@ -2,13 +2,21 @@
 -- made by Zynic
 --------------------------------VARIABLES SECTION OF THE CODE-----------------------------------
 ------------------------------------------------------------------------------------------------
+local Octree
+local library
+local Iris
 
-if not httpget then
-return print("You're executor [" .. identifyexecutor() .. "] cannot run this")
+if httpget then
+	Octree = loadstring(httpget("https://raw.githubusercontent.com/Sleitnick/rbxts-octo-tree/main/src/init.lua", true))()
+	library = loadstring(httpget("https://raw.githubusercontent.com/Zyn-ic/MM2-AutoFarm/refs/heads/main/UI-Library/XSX.lua", true))()
+	Iris = loadstring(httpget("https://raw.githubusercontent.com/x0581/Iris-Exploit-Bundle/2.0.4/bundle.lua"))().Init(game.CoreGui)
+else
+	game:GetService("StarterGui"):SetCore("SendNotification", { Title = "Using Old Method", Text = "using discontinued 'game:HttpGet'", Duration = 4 })
+	Octree = loadstring(game:HttpGet("https://raw.githubusercontent.com/Sleitnick/rbxts-octo-tree/main/src/init.lua", true))()
+	library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Zyn-ic/MM2-AutoFarm/refs/heads/main/UI-Library/XSX.lua", true))()
+	Iris = loadstring(game:HttpGet("https://raw.githubusercontent.com/x0581/Iris-Exploit-Bundle/2.0.4/bundle.lua"))().Init(game.CoreGui)
 end
-local Octree = loadstring(httpget("https://raw.githubusercontent.com/Sleitnick/rbxts-octo-tree/main/src/init.lua", true))()
-local library = loadstring(httpget("https://raw.githubusercontent.com/Zyn-ic/MM2-AutoFarm/refs/heads/main/UI-Library/XSX.lua", true))()
-local Iris = loadstring(httpget("https://raw.githubusercontent.com/x0581/Iris-Exploit-Bundle/2.0.4/bundle.lua"))().Init(game.CoreGui)
+
 --local WayPointManager = loadstring(httpget("https://raw.githubusercontent.com/Zyn-ic/MM2-AutoFarm/refs/heads/main/Iris-Functions/WayPointManager", true))()
 
 local Notif = library:InitNotifications()
