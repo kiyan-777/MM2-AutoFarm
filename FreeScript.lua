@@ -653,15 +653,15 @@ end
 
 function rt:SpeedUp () : (boolean)
     --speed up the player no more than 28
-    if self:Character():FindFirstAncestorWhichIsA("Humanoid").WalkSpeed == 28 then return false end
-    self:Character():FindFirstAncestorWhichIsA("Humanoid").WalkSpeed += 4
+    if self:Character():FindFirstChildWhichIsA("Humanoid").WalkSpeed == 28 then return false end
+    self:Character():FindFirstChildWhichIsA("Humanoid").WalkSpeed += 4
 
     return true
 end
 
 function rt:ResetSpeed () : (boolean)
-    if self:Character():FindFirstAncestorWhichIsA("Humanoid").WalkSpeed == 16 then return false end
-    self:Character():FindFirstAncestorWhichIsA("Humanoid").WalkSpeed = 16
+    if self:Character():FindFirstChildWhichIsA("Humanoid").WalkSpeed == 16 then return false end
+    self:Character():FindFirstChildWhichIsA("Humanoid").WalkSpeed = 16
     
     return true
 end
@@ -1256,7 +1256,7 @@ Tab1:NewButton("Increase WalkSpeed", function()
     local result = rt:SpeedUp() -- reset speed
     if result == false then Notif:Notify("WalkSpeed is at max", 1.5, "error") return end -- error handling
 
-    Notif:Notify("Increased WalkSpeed to: ".. rt:Character():FindFirstAncestorWhichIsA("Humanoid").WalkSpeed, 1, "success")
+    Notif:Notify("Increased WalkSpeed to: ".. rt:Character():FindFirstChildWhichIsA("Humanoid").WalkSpeed, 1, "success")
     result = nil
 end)
 Tab1:NewLabel("this will up your walkspeed by 4 [28 is max]", "center")
