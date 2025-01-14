@@ -8,12 +8,12 @@ you can use : <br/> loadstring(game:HttpGet("https://raw.githubusercontent.com/Z
 
 <details>
   <summary>Preview of the HUB</summary>
-  ![Screenshot 2025-01-13 213101](https://github.com/user-attachments/assets/d3150b7c-975e-44be-a758-b4f64bd0ae28)
-  ![Screenshot 2025-01-13 213141](https://github.com/user-attachments/assets/e184cbba-da04-4089-a8ac-d38a48e6f558)
-  ![Screenshot 2025-01-13 213202](https://github.com/user-attachments/assets/b4c145b6-38d0-4225-8120-4d6ead646e01)
-  ![Screenshot 2025-01-13 213226](https://github.com/user-attachments/assets/3d00068c-e99d-414c-ac07-0504bab9e6fd)
-  ![Screenshot 2025-01-13 213249](https://github.com/user-attachments/assets/8c68b38d-ec3e-43e3-8fa3-ef0720eeed1e)
-  ![Screenshot 2025-01-13 213322](https://github.com/user-attachments/assets/628f61b7-313f-4927-a547-93176897aacc)
+  <img src="https://github.com/user-attachments/assets/d3150b7c-975e-44be-a758-b4f64bd0ae28" alt="image-description"/>
+  <img src="https://github.com/user-attachments/assets/e184cbba-da04-4089-a8ac-d38a48e6f558" alt="image-description"/>
+  <img src="https://github.com/user-attachments/assets/b4c145b6-38d0-4225-8120-4d6ead646e01" alt="image-description"/>
+  <img src="https://github.com/user-attachments/assets/3d00068c-e99d-414c-ac07-0504bab9e6fd" alt="image-description"/>
+  <img src="https://github.com/user-attachments/assets/8c68b38d-ec3e-43e3-8fa3-ef0720eeed1e" alt="image-description"/>
+  <img src="https://github.com/user-attachments/assets/628f61b7-313f-4927-a547-93176897aacc" alt="image-description"/>
 </details>
 
 # Disclaimer
