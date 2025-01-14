@@ -38,13 +38,13 @@ you can use : <br/> loadstring(game:HttpGet("https://raw.githubusercontent.com/Z
 
 
 [^1]: used to refresh roles manually
-> [!NOTE] [^2]: will refresh role automatically but is as acurate as I need it to be
-> [!NOTE] [^3]: safe gun is a setting feature for get gun. It's purpose is to make sure you're not too far from the gun when getting it.
+[^2]: will refresh role automatically but is as acurate as I need it to be
+[^3]: safe gun is a setting feature for get gun. It's purpose is to make sure you're not too far from the gun when getting it.
 
 
 
 
 # Potential Updates:
 * implement crushfire's [scheduler class module](https://youtu.be/jGIomP26RRQ?si=0ba7S9dpC5fKFPfl) to see if that would reduce the coroutine usage[^4]
-[^4] not the best with coroutine
+[^4]: I'm not the best with coroutines
 
