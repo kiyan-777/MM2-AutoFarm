@@ -37,9 +37,9 @@ you can use : <br/> loadstring(game:HttpGet("https://raw.githubusercontent.com/Z
 * TP to alive player
 
 
-[^1] used to refresh roles manually
-> [!NOTE] [^2] will refresh role automatically but is as acurate as I need it to be
-> [!NOTE] [^3] safe gun is a setting feature for get gun. It's purpose is to make sure you're not too far from the gun when getting it.
+[^1]: used to refresh roles manually
+> [!NOTE] [^2]: will refresh role automatically but is as acurate as I need it to be
+> [!NOTE] [^3]: safe gun is a setting feature for get gun. It's purpose is to make sure you're not too far from the gun when getting it.
 
 
 
