@@ -65,7 +65,7 @@ I noticed my script has be forked and used in a lot of the newer mm2 autofarm sc
 - [x] faster
 - [x] safer
 - [x] smarter
-- [x] and accout for all werid possibilities (like a murderer killing you while you're tweening to a coin)
+- [x] and account for all werid possibilities (like a murderer killing you while you're tweening to a coin)
 
 ## Basic Features
 
